@@ -1,0 +1,1 @@
+ICards templating ensures the map contains only strategy of the particular type
