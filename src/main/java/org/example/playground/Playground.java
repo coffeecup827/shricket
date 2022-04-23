@@ -7,30 +7,13 @@ import org.example.strategy.BattingStrategy;
 import org.example.strategy.BowlingStrategy;
 import org.example.strategy.TimingStrategy;
 
-import java.util.Scanner;
-
-public class Playground {
-  Scanner scanner = new Scanner(System.in);
-  private final BattingCards battingCards = new BattingCards();
-  private final BowlingCards bowlingCards = new BowlingCards();
-  private final TimingCards timingCards = new TimingCards();
-  public void log(String text) {
-    System.out.println(text);
-  }
-  public String scan() {
-    return scanner.nextLine().toUpperCase();
-  }
-  public void divider() {
-    log("\n");
-    log("----------------------------------------");
-    log("\n");
-  }
-  public void gap() {
-    log("");
-  }
+public class Playground implements ICommand, ILog, IRead {
+  private final BattingCards battingCards = BattingCards.getInstance();
+  private final BowlingCards bowlingCards = BowlingCards.getInstance();
+  private final TimingCards timingCards = TimingCards.getInstance();
   public void run() {
     divider();
-    log("Lets Play Prediction!");
+    log("Lets Play!");
     gap();
     log("Input Format: bowling_strategy batting_strategy timing_strategy");
     simulate();
