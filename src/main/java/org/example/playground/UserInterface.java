@@ -1,19 +1,17 @@
 package org.example.playground;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserInterface implements ICommand, ILog, IRead {
-
-  private final Help help = getHelp();
-  private final CheatCode cheatCode = getCheatCode();
-  private final Playground playground = getPlayground();
-
-  private Playground getPlayground() {
-    return new Playground();
-  }
-  public CheatCode getCheatCode() {
-    return new CheatCode();
-  }
-  public Help getHelp() {
-    return new Help();
+  private final List<ICommand> actions = new ArrayList<>();
+  private final int totalOptions;
+  public UserInterface() {
+    actions.add(getPlayground());
+    actions.add(getCommentaryPlayground());
+    actions.add(getHelp());
+    actions.add(getCheatCode());
+    totalOptions = actions.size() + 1;
   }
 
   @Override
@@ -22,13 +20,8 @@ public class UserInterface implements ICommand, ILog, IRead {
 
     int option = getOption();
 
-    while (option != 4) {
-      switch (option) {
-        case 1 -> playground.run();
-        case 2 -> help.run();
-        case 3 -> cheatCode.run();
-        default -> log("Please a valid option");
-      }
+    while (option != totalOptions) {
+      actions.get(option - 1).run();
       promptForOption();
       option = getOption();
     }
@@ -37,7 +30,7 @@ public class UserInterface implements ICommand, ILog, IRead {
   public int getOption() {
     log("Your Option: ");
     int option = Integer.parseInt(scan());
-    while (option > 4 || option < 1) {
+    while (option > totalOptions || option < 1) {
       log("Please select a valid option");
       log("Your Option: ");
       option = Integer.parseInt(scan());
@@ -48,8 +41,22 @@ public class UserInterface implements ICommand, ILog, IRead {
   public void promptForOption() {
     log("Please select an option");
     log("1. Prediction");
-    log("2. Help");
-    log("3. Cheat Code");
-    log("4. Stop");
+    log("2. Commentary");
+    log("3. Help");
+    log("4. Cheat Code");
+    log("5. Stop");
+  }
+
+  private PredictionPlayground getPlayground() {
+    return new PredictionPlayground();
+  }
+  public CheatCode getCheatCode() {
+    return new CheatCode();
+  }
+  public Help getHelp() {
+    return new Help();
+  }
+  private CommentaryPlayground getCommentaryPlayground() {
+    return new CommentaryPlayground();
   }
 }

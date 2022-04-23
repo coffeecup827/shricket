@@ -7,20 +7,13 @@ import org.example.strategy.BattingStrategy;
 import org.example.strategy.BowlingStrategy;
 import org.example.strategy.TimingStrategy;
 
-public class Playground implements ICommand, ILog, IRead {
-  private final BattingCards battingCards = BattingCards.getInstance();
-  private final BowlingCards bowlingCards = BowlingCards.getInstance();
-  private final TimingCards timingCards = TimingCards.getInstance();
-  public void run() {
-    divider();
-    log("Lets Play!");
-    gap();
-    log("Input Format: bowling_strategy batting_strategy timing_strategy");
-    simulate();
-    divider();
-  }
+public abstract class IPlayground implements ICommand, ILog, IRead {
+  protected final BattingCards battingCards = BattingCards.getInstance();
+  protected final BowlingCards bowlingCards = BowlingCards.getInstance();
+  protected final TimingCards timingCards = TimingCards.getInstance();
 
   public void simulate() {
+    log("Your Input: ");
     String input = scan();
     while(!input.equals("END")) {
       String[] strategies = input.split(" ");
@@ -33,13 +26,6 @@ public class Playground implements ICommand, ILog, IRead {
       input = scan();
     }
   }
-  public String getResult(int score) {
-    String text;
-    if (score > 0) {
-      text = score == 1 ? " run" : " runs";
-      return score + text;
-    } else {
-      return  "1 wicket";
-    }
-  }
+
+  public abstract String getResult(int score);
 }

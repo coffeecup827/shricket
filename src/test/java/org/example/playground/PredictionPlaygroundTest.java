@@ -7,12 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.stream.Stream;
 
-class PlaygroundTest {
-  private final Playground playground =  new Playground();
+class PredictionPlaygroundTest {
+  private final PredictionPlayground predictionPlayground =  new PredictionPlayground();
   @ParameterizedTest
   @MethodSource("provideScoreForCorrectPrediction")
   void resultTextShouldBeCorrect(int score, String result) {
-    assertEquals(result, playground.getResult(score));
+    assertEquals(result, predictionPlayground.getResult(score));
   }
 
   private static Stream<Arguments> provideScoreForCorrectPrediction() {
