@@ -17,11 +17,16 @@ public abstract class ICards <S extends IStrategy> {
   }
 
   private List<Integer> getUniqueRandomNumbers(int size) {
+    List<Integer> uniqueNumbersList = new ArrayList<>();
     Set<Integer> uniqueRandomNumbers = new HashSet<>();
     while (uniqueRandomNumbers.size() < size) {
-      uniqueRandomNumbers.add(random.nextInt(size)+1);
+      int weight = random.nextInt(size)+1;
+      if (!uniqueRandomNumbers.contains(weight)) {
+        uniqueNumbersList.add(weight);
+        uniqueRandomNumbers.add(weight);
+      }
     }
-    return uniqueRandomNumbers.stream().toList();
+    return uniqueNumbersList;
   }
 
   public Card getCard(S strategy) {

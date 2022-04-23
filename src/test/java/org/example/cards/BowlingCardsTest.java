@@ -4,6 +4,6 @@ import org.example.strategy.BowlingStrategy;
 
 class BowlingCardsTest extends CardsTest<BowlingStrategy, BowlingCards> {
   public BowlingCardsTest() {
-    super(new BowlingCards(), BowlingStrategy.values());
+    super(BowlingCards.getInstance(), BowlingStrategy.values());
   }
 }
