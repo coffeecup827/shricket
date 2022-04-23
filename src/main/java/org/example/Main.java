@@ -1,7 +1,10 @@
 package org.example;
 
+import org.example.playground.Playground;
+
 public class Main {
   public static void main(String[] args) {
-    System.out.println("Hello world!");
+    Playground playground = new Playground();
+    playground.run();
   }
 }

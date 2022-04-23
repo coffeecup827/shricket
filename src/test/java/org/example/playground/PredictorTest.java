@@ -16,7 +16,7 @@ class PredictorTest {
 
   @ParameterizedTest
   @MethodSource("provideCardsForCorrectPrediction")
-  void predictionTextShouldBeCorrect(Card battingCard, Card bowlingCard, Card timingCard, String prediction) {
+  void predictionScoreShouldBeCorrect(Card battingCard, Card bowlingCard, Card timingCard, int prediction) {
     assertEquals(prediction, Predictor.predict(battingCard, bowlingCard, timingCard));
   }
 
@@ -26,19 +26,25 @@ class PredictorTest {
         getCard(BattingStrategy.FLICK, 6),
         getCard(BowlingStrategy.BOUNCER, 1),
         getCard(TimingStrategy.GOOD, 1),
-        "1 wicket"
+        0
       ),
       Arguments.of(
         getCard(BattingStrategy.FLICK, 2),
         getCard(BowlingStrategy.BOUNCER, 2),
         getCard(TimingStrategy.GOOD, 1),
-        "4 runs"
+        4
       ),
       Arguments.of(
         getCard(BattingStrategy.FLICK, 7),
         getCard(BowlingStrategy.BOUNCER, 1),
         getCard(TimingStrategy.GOOD, 1),
-        "1 run"
+        1
+      ),
+      Arguments.of(
+        getCard(BattingStrategy.FLICK, 5),
+        getCard(BowlingStrategy.BOUNCER, 1),
+        getCard(TimingStrategy.GOOD, 1),
+        6
       )
     );
   }
