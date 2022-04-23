@@ -4,6 +4,7 @@ import org.example.strategy.IStrategy;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +34,13 @@ abstract class CardsTest<S extends IStrategy, C extends ICards<S>> {
   void getCardShouldShouldReturnCorrectStrategy() {
     for (S strategy: strategies) {
       assertEquals(strategy.toString(), cards.getCard(strategy).name());
+    }
+  }
+
+  @Test
+  void cardsShouldHavePositiveNonZeroWeight() {
+    for (S strategy: strategies) {
+      assertTrue(cards.getCard(strategy).weight() > 0);
     }
   }
 
