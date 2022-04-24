@@ -13,7 +13,7 @@ public abstract class IPlayground implements ICommand, ILog, IRead {
   protected final BowlingCards bowlingCards = BowlingCards.getInstance();
   protected final TimingCards timingCards = TimingCards.getInstance();
 
-  public void simulate() {
+  void simulate() {
     log(Strings.YOUR_INPUT);
     String input = scan();
     while(!input.equals(Strings.END_TEXT)) {
@@ -38,18 +38,29 @@ public abstract class IPlayground implements ICommand, ILog, IRead {
     }
   }
 
-  public String getWrongInputText(String[] strategies) {
-    return strategies[0] + " " + strategies[1] + " " + strategies[2] + Strings.IS_WRONG;
+  private String getWrongInputText(String[] strategies) {
+    StringBuilder text = new StringBuilder();
+    for (String strategy : strategies) {
+      if (!strategy.isEmpty()) {
+        text.append(strategy).append(" ");
+      }
+    }
+
+    if (text.toString().isEmpty()) {
+      return Strings.EMPTY_INPUT;
+    } else {
+      return text + Strings.IS_WRONG;
+    }
   }
-  public String getEndHelpText() {
+  String getEndHelpText() {
     return Strings.END_HELP_1 + Strings.END_TEXT + Strings.END_HELP_2;
   }
 
   private boolean validInput(String[] strategies) {
-    return BowlingStrategy.has(strategies[0])
+    return strategies.length == 3 && BowlingStrategy.has(strategies[0])
       && BattingStrategy.has(strategies[1])
       && TimingStrategy.has(strategies[2]);
   }
 
-  public abstract void logResult(int score);
+  abstract void logResult(int score);
 }

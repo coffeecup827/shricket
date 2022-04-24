@@ -2,6 +2,7 @@ package org.example.ui_handlers;
 
 import org.example.ui_handlers.playground.CommentaryPlayground;
 import org.example.ui_handlers.playground.PredictionPlayground;
+import org.example.ui_handlers.playground.SuperOverPlayground;
 import org.example.utils.ICommand;
 import org.example.utils.ILog;
 import org.example.utils.IRead;
@@ -15,6 +16,7 @@ public class UserInterface implements ICommand, ILog, IRead {
   public UserInterface() {
     actions.add(getPlayground());
     actions.add(getCommentaryPlayground());
+    actions.add(getSuperOverPlayground());
     actions.add(getHelp());
     actions.add(getCheatCode());
     totalOptions = actions.size() + 1;
@@ -35,11 +37,22 @@ public class UserInterface implements ICommand, ILog, IRead {
 
   public int getOption() {
     log("Your Option: ");
-    int option = Integer.parseInt(scan());
+    int option = getAnInt();
     while (option > totalOptions || option < 1) {
-      log("Please select a valid option");
+      log("Please select a option");
       log("Your Option: ");
+      option = getAnInt();
+    }
+    return option;
+  }
+
+  private int getAnInt() {
+    int option = 0;
+    try {
       option = Integer.parseInt(scan());
+    } catch (Exception e) {
+      log("Please input option number");
+      gap();
     }
     return option;
   }
@@ -48,9 +61,10 @@ public class UserInterface implements ICommand, ILog, IRead {
     log("Please select an option");
     log("1. Prediction");
     log("2. Commentary");
-    log("3. Help");
-    log("4. Cheat Code");
-    log("5. Stop");
+    log("3. Super Over");
+    log("4. Help");
+    log("5. Cheat Code");
+    log("6. Stop");
   }
 
   private PredictionPlayground getPlayground() {
@@ -64,5 +78,8 @@ public class UserInterface implements ICommand, ILog, IRead {
   }
   private CommentaryPlayground getCommentaryPlayground() {
     return new CommentaryPlayground();
+  }
+  private SuperOverPlayground getSuperOverPlayground() {
+    return new SuperOverPlayground();
   }
 }

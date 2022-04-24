@@ -16,7 +16,7 @@ public class CommentaryPlayground extends IPlayground {
     divider();
   }
 
-  public void logResult(int score) {
+  void logResult(int score) {
     log(ResultGenerator.getCommentary(score) + " - " + ResultGenerator.getDefaultResult(score));
   }
 }

@@ -15,7 +15,7 @@ public class PredictionPlayground extends IPlayground {
     log(Strings.THANKS_PREDICTION);
     divider();
   }
-  public void logResult(int score) {
+  void logResult(int score) {
     log(ResultGenerator.getDefaultResult(score));
   }
 }
