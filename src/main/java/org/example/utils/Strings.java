@@ -1,4 +1,4 @@
-package org.example.playground;
+package org.example.utils;
 
 public class Strings {
 
@@ -13,5 +13,5 @@ public class Strings {
   public static final String YOUR_INPUT = "Your Input: ";
   public static final String VALID_INPUT_HELP = "Please input valid strategies or get help";
   public static final String IS_WRONG = " is wrong";
-  protected static final String END_TEXT = "END";
+  public static final String END_TEXT = "END";
 }

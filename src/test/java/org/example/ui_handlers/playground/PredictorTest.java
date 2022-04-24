@@ -1,10 +1,11 @@
-package org.example.playground;
+package org.example.ui_handlers.playground;
 
 import org.example.cards.Card;
 import org.example.strategy.BattingStrategy;
 import org.example.strategy.BowlingStrategy;
 import org.example.strategy.IStrategy;
 import org.example.strategy.TimingStrategy;
+import org.example.utils.Predictor;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

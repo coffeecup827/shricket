@@ -1,4 +1,4 @@
-package org.example.playground;
+package org.example.utils;
 
 public interface ICommand {
   void run();

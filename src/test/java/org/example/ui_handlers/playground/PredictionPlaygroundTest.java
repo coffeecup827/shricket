@@ -1,4 +1,4 @@
-package org.example.playground;
+package org.example.ui_handlers.playground;
 
 import static org.mockito.Mockito.spy;
 

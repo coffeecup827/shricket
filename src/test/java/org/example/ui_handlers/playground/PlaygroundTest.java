@@ -1,6 +1,9 @@
-package org.example.playground;
+package org.example.ui_handlers.playground;
 
 import org.example.cards.Card;
+import org.example.ui_handlers.playground.IPlayground;
+import org.example.utils.Predictor;
+import org.example.utils.Strings;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;

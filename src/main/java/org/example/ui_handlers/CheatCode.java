@@ -1,4 +1,4 @@
-package org.example.playground;
+package org.example.ui_handlers;
 
 import org.example.cards.BattingCards;
 import org.example.cards.BowlingCards;
@@ -8,6 +8,8 @@ import org.example.strategy.BattingStrategy;
 import org.example.strategy.BowlingStrategy;
 import org.example.strategy.IStrategy;
 import org.example.strategy.TimingStrategy;
+import org.example.utils.ICommand;
+import org.example.utils.ILog;
 
 public class CheatCode implements ICommand, ILog {
   private final BattingCards battingCards = BattingCards.getInstance();
