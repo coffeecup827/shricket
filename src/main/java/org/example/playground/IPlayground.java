@@ -13,19 +13,42 @@ public abstract class IPlayground implements ICommand, ILog, IRead {
   protected final TimingCards timingCards = TimingCards.getInstance();
 
   public void simulate() {
-    log("Your Input: ");
+    log(Strings.YOUR_INPUT);
     String input = scan();
-    while(!input.equals("END")) {
+    while(!input.equals(Strings.END_TEXT)) {
       String[] strategies = input.split(" ");
-      int score = Predictor.predict(
-        bowlingCards.getCard(BowlingStrategy.valueOf(strategies[0])),
-        battingCards.getCard(BattingStrategy.valueOf(strategies[1])),
-        timingCards.getCard(TimingStrategy.valueOf(strategies[2]))
-      );
-      log(getResult(score));
+      if (validInput(strategies)) {
+        int score = Predictor.predict(
+          bowlingCards.getCard(BowlingStrategy.valueOf(strategies[0])),
+          battingCards.getCard(BattingStrategy.valueOf(strategies[1])),
+          timingCards.getCard(TimingStrategy.valueOf(strategies[2]))
+        );
+        logResult(score);
+      } else {
+        log(getWrongInputText(strategies));
+        log(Strings.VALID_INPUT_HELP);
+        log(getEndHelpText());
+        log(Strings.INPUT_FORMAT);
+      }
+
+      gap();
+      log(Strings.YOUR_INPUT);
       input = scan();
     }
   }
 
-  public abstract String getResult(int score);
+  public String getWrongInputText(String[] strategies) {
+    return strategies[0] + " " + strategies[1] + " " + strategies[2] + Strings.IS_WRONG;
+  }
+  public String getEndHelpText() {
+    return Strings.END_HELP_1 + Strings.END_TEXT + Strings.END_HELP_2;
+  }
+
+  private boolean validInput(String[] strategies) {
+    return BowlingStrategy.has(strategies[0])
+      && BattingStrategy.has(strategies[1])
+      && TimingStrategy.has(strategies[2]);
+  }
+
+  public abstract void logResult(int score);
 }
