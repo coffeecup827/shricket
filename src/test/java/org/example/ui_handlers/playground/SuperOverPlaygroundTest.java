@@ -89,7 +89,7 @@ class SuperOverPlaygroundTest {
     doReturn(getListOfBowls(1)).when(superOverPlayground).getRandomBowls();
     doReturn(5).when(superOverPlayground).getFirstInningsScore();
 
-    doReturn(getShot(1)).when(superOverPlayground).scan();
+    doReturn(getShot(1, 1)).when(superOverPlayground).scan();
     superOverPlayground.run();
 
     verify(superOverPlayground, atLeast(1)).log(logsCaptor.capture());
@@ -104,7 +104,7 @@ class SuperOverPlaygroundTest {
     doReturn(getListOfBowls(6)).when(superOverPlayground).getRandomBowls();
     doReturn(5).when(superOverPlayground).getFirstInningsScore();
 
-    doReturn(getShot(2)).when(superOverPlayground).scan();
+    doReturn(getShot(2, 2)).when(superOverPlayground).scan();
     superOverPlayground.run();
 
     verify(superOverPlayground, atLeast(1)).log(logsCaptor.capture());
@@ -119,7 +119,7 @@ class SuperOverPlaygroundTest {
     doReturn(getListOfBowls(1)).when(superOverPlayground).getRandomBowls();
     doReturn(6).when(superOverPlayground).getFirstInningsScore();
 
-    doReturn(getShot(1)).when(superOverPlayground).scan();
+    doReturn(getShot(1,1 )).when(superOverPlayground).scan();
     superOverPlayground.run();
 
     verify(superOverPlayground, atLeast(1)).log(logsCaptor.capture());
@@ -129,17 +129,17 @@ class SuperOverPlaygroundTest {
     verify(superOverPlayground, times(6)).scan();
   }
 
-  private String getShot(int weight) {
+  private String getShot(int battingWeight, int timingWeight) {
     BattingStrategy battingStrategy = null;
     for (BattingStrategy strategy: BattingStrategy.values()) {
-      if (battingCards.getCard(strategy).weight() == weight) {
+      if (battingCards.getCard(strategy).weight() == battingWeight) {
         battingStrategy = strategy;
       }
     }
 
     TimingStrategy timingStrategy = null;
     for (TimingStrategy strategy: TimingStrategy.values()) {
-      if (timingCards.getCard(strategy).weight() == weight) {
+      if (timingCards.getCard(strategy).weight() == timingWeight) {
         timingStrategy = strategy;
       }
     }
