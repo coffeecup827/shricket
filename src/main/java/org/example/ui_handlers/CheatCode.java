@@ -8,10 +8,9 @@ import org.example.strategy.BattingStrategy;
 import org.example.strategy.BowlingStrategy;
 import org.example.strategy.IStrategy;
 import org.example.strategy.TimingStrategy;
-import org.example.utils.ICommand;
 import org.example.utils.ILog;
 
-public class CheatCode implements ICommand, ILog {
+public class CheatCode implements IUserAction, ILog {
   private final BattingCards battingCards = BattingCards.getInstance();
   private final BowlingCards bowlingCards = BowlingCards.getInstance();
   private final TimingCards timingCards = TimingCards.getInstance();
@@ -35,5 +34,10 @@ public class CheatCode implements ICommand, ILog {
       }
     }
     return text.toString();
+  }
+
+  @Override
+  public String getName() {
+    return "Cheat Code";
   }
 }

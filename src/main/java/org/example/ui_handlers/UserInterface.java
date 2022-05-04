@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserInterface implements ICommand, ILog, IRead {
-  private final List<ICommand> actions = new ArrayList<>();
+  private final List<IUserAction> actions = new ArrayList<>();
   private final int totalOptions;
   public UserInterface() {
     actions.add(getPlayground());
@@ -59,14 +59,12 @@ public class UserInterface implements ICommand, ILog, IRead {
 
   public void promptForOption() {
     log("Please select an option");
-    log("1. Play Prediction");
-    log("2. Play with Commentary");
-    log("3. Play Super Over");
-    log("4. Help");
-    log("5. Cheat Code");
-    log("6. Stop");
-    gap();
+    for (int i = 1; i <= actions.size(); i++) {
+      log(i + ". " + actions.get(i - 1).getName());
+    }
+    log((actions.size() + 1) + ". Stop");
     log("For more info, read readme :)");
+    gap();
   }
 
   private PredictionPlayground getPlayground() {

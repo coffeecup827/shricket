@@ -4,10 +4,9 @@ import org.example.strategy.BattingStrategy;
 import org.example.strategy.BowlingStrategy;
 import org.example.strategy.IStrategy;
 import org.example.strategy.TimingStrategy;
-import org.example.utils.ICommand;
 import org.example.utils.ILog;
 
-public class Help implements ICommand, ILog {
+public class Help implements IUserAction, ILog {
   @Override
   public void run() {
     divider();
@@ -26,5 +25,10 @@ public class Help implements ICommand, ILog {
       }
     }
     return text.toString();
+  }
+
+  @Override
+  public String getName() {
+    return "Help";
   }
 }

@@ -3,13 +3,14 @@ package org.example.ui_handlers.playground;
 import org.example.strategy.BattingStrategy;
 import org.example.strategy.BowlingStrategy;
 import org.example.strategy.TimingStrategy;
+import org.example.ui_handlers.IUserAction;
 import org.example.utils.Predictor;
 import org.example.utils.ResultGenerator;
 import org.example.utils.Strings;
 
 import java.util.*;
 
-public class SuperOverPlayground extends IPlayground {
+public class SuperOverPlayground extends IPlayground implements IUserAction {
 
   private static final List<BowlingStrategy> bowls = new ArrayList<>();
   private static final int NUMBER_OF_BALLS = 6;
@@ -196,4 +197,9 @@ public class SuperOverPlayground extends IPlayground {
     return randomBowls;
   }
   void logResult(int score) { /* Not Used */ }
+
+  @Override
+  public String getName() {
+    return "Play Super Over";
+  }
 }
