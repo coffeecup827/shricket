@@ -59,12 +59,14 @@ public class UserInterface implements ICommand, ILog, IRead {
 
   public void promptForOption() {
     log("Please select an option");
-    log("1. Prediction");
-    log("2. Commentary");
-    log("3. Super Over");
+    log("1. Play Prediction");
+    log("2. Play with Commentary");
+    log("3. Play Super Over");
     log("4. Help");
     log("5. Cheat Code");
     log("6. Stop");
+    gap();
+    log("For more info, read readme :)");
   }
 
   private PredictionPlayground getPlayground() {

@@ -17,11 +17,11 @@ public class SuperOverPlayground extends IPlayground {
   private int firstInningsScore = 0;
   private static final int WICKETS_AVAILABLE = 2;
   private static final String[] batters = new String[] {
-    Strings.SMITH,
-    Strings.WARNER,
-    Strings.MAXWELL
+    Strings.FIRST_PLAYER,
+    Strings.SECOND_PLAYER,
+    Strings.THIRD_PLAYER
   };
-  private static final String BOWLER = Strings.BHUVNESHWAR;
+  private static final String BOWLER = Strings.BOWLER;
 
   private String batsmanOne;
   private String batsmanTwo;
