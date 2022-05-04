@@ -6,6 +6,9 @@
  - **Cheat Code** - Shows the strategies with their weights
  - **Stop** - Shuts the app down
 
+All combinations for the strategies can be found at `input_combinations.txt` 
+for a quick start.
+
 ### Prediction Logic:
 
 All the strategies are given a random weight at the boot up of the app. This 
